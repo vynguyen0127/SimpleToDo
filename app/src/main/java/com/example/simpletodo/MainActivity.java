@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String KEY_ITEM_TEXT = "item_text";
     public static final String KEY_ITEM_POSITION = " item_position";
     public static final int EDIT_TEXT_CODE = 20;
+    public static final int DELETE_ITEM_CODE = 30;
     List<String> items;
 
     Button btnAdd;
@@ -48,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemLongClicked(int position) {
                 // Delete the item from the model
-                items.remove(position);
+//                items.remove(position);
+                Intent i = new Intent(MainActivity.this, ConfirmDelete.class);
+                i.putExtra(KEY_ITEM_TEXT,items.get(position));
+                i.putExtra(KEY_ITEM_POSITION,position);
+                startActivityForResult(i, DELETE_ITEM_CODE);
                 // Notify the adapter
-                itemsAdapter.notifyItemRemoved(position);
-                Toast.makeText(getApplicationContext(),"Item was removed", Toast.LENGTH_SHORT).show();
-                saveItems();
+//                itemsAdapter.notifyItemRemoved(position);
+//                Toast.makeText(getApplicationContext(),"Item was removed", Toast.LENGTH_SHORT).show();
+//                saveItems();
             }
         };
 
@@ -106,6 +111,13 @@ public class MainActivity extends AppCompatActivity {
             // persist the changes
             saveItems();
             Toast.makeText(getApplicationContext(), "Item updated successfully!", Toast.LENGTH_SHORT).show();
+        }
+        else if(resultCode == RESULT_OK && requestCode == DELETE_ITEM_CODE){
+            int position = data.getExtras().getInt(KEY_ITEM_POSITION);
+            items.remove(position);
+            itemsAdapter.notifyItemRemoved(position);
+            Toast.makeText(getApplicationContext(),"Item was removed", Toast.LENGTH_SHORT).show();
+            saveItems();
         }
         else{
             Log.w("MainActivity", "Unknown call to onActivityResult");
