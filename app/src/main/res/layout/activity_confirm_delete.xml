@@ -21,24 +21,22 @@
 
     <Button
         android:id="@+id/btnNo"
-        android:layout_width="169dp"
+        android:layout_width="188dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="150dp"
-        android:layout_marginEnd="50dp"
-        android:layout_toStartOf="@+id/btnYes"
         android:text="No" />
 
     <Button
         android:id="@+id/btnYes"
-        android:layout_width="173dp"
+        android:layout_width="181dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="150dp"
-        android:layout_marginEnd="9dp"
+        android:layout_marginEnd="7dp"
         android:text="Yes" />
 
     <TextView
